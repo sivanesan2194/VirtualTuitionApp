@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Virtual Tuition</string>
+    <string name="title_login">Welcome to Virtual Tuition</string>
+    <string name="subtitle_login">Sign in to access your virtual classrooms</string>
+    <string name="email_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="btn_sign_in">Sign In</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="btn_google_sign_in">Sign in with Google</string>
+    <string name="dont_have_account">Don\'t have an account? Sign up</string>
+    <string name="already_have_account">Already have an account? Sign in</string>
+
+    <string name="role_prompt">Select Your Role</string>
+    <string name="role_teacher">Teacher</string>
+    <string name="role_student">Student</string>
+    <string name="name_hint">Full Name</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">My Classrooms</string>
+    <string name="btn_create_class">Create Classroom</string>
+    <string name="btn_join_class">Join Classroom</string>
+    <string name="join_code_prompt">Enter 6-digit Classroom Code</string>
+    <string name="copy_class_code">Copy Class Code</string>
+
+    <!-- Whiteboard -->
+    <string name="title_whiteboard">Drawpoint Whiteboard</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_undo">Undo</string>
+    <string name="btn_eraser">Eraser</string>
+    <string name="btn_export">Export</string>
+    <string name="brush_thickness">Brush Thickness</string>
+
+    <!-- Video Class -->
+    <string name="title_live_class">Live Video Class</string>
+    <string name="btn_join_meeting">Join Live Class</string>
+
+    <!-- Payment & Subscription -->
+    <string name="title_subscription">Tuition Subscription</string>
+    <string name="monthly_fee_amount">₹1,000 / Month</string>
+    <string name="btn_pay_now">Pay Tuition Fee Now</string>
+    <string name="status_label">Subscription Status</string>
+    <string name="overdue_label">Days Overdue</string>
+    <string name="features_label">Feature Access</string>
+
+    <!-- Material Stream -->
+    <string name="materials_title">Classroom Stream &amp; Materials</string>
+    <string name="btn_upload_material">Upload Material</string>
+    <string name="material_title_hint">Material Title</string>
+    <string name="material_desc_hint">Description</string>
+    <string name="btn_choose_file">Select File</string>
+    <string name="btn_download">Download</string>
+    <string name="btn_preview">Preview</string>
+</resources>

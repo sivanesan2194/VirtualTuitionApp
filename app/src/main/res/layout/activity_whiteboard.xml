@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface">
+
+    <!-- Whiteboard Top Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/whiteboardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/surface"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="@string/title_whiteboard"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingEnd="12dp">
+
+            <ImageButton
+                android:id="@+id/btnUndoStroke"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_undo"
+                app:tint="@color/text_primary"
+                android:contentDescription="@string/btn_undo" />
+
+            <ImageButton
+                android:id="@+id/btnToggleEraser"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_eraser"
+                app:tint="@color/text_primary"
+                android:contentDescription="@string/btn_eraser" />
+
+            <ImageButton
+                android:id="@+id/btnClearCanvas"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_clear"
+                app:tint="@color/palette_red"
+                android:contentDescription="@string/btn_clear" />
+
+            <ImageButton
+                android:id="@+id/btnExportCanvas"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_share"
+                app:tint="@color/primary"
+                android:contentDescription="@string/btn_export" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Native Custom View: DrawView -->
+    <com.virtualtuition.app.whiteboard.DrawView
+        android:id="@+id/drawView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/whiteboardToolbar"
+        app:layout_constraintBottom_toTopOf="@id/toolsCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Bottom Controls Card: Color Palette and Brush Thickness Slider -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/toolsCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Color Palette Row -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layoutColorPalette"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Color circles dynamically styled or created -->
+                    <View
+                        android:id="@+id/colorBlack"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@color/palette_black" />
+
+                    <View
+                        android:id="@+id/colorRed"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@color/palette_red" />
+
+                    <View
+                        android:id="@+id/colorBlue"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@color/palette_blue" />
+
+                    <View
+                        android:id="@+id/colorGreen"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@color/palette_green" />
+
+                    <View
+                        android:id="@+id/colorYellow"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@color/palette_yellow" />
+
+                    <View
+                        android:id="@+id/colorOrange"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@color/palette_orange" />
+
+                    <View
+                        android:id="@+id/colorPurple"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@color/palette_purple" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Brush Thickness Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvBrushSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Size: 10px"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:minWidth="65dp" />
+
+                <SeekBar
+                    android:id="@+id/seekBarThickness"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:max="50"
+                    android:progress="10" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

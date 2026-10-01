@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Network & Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Audio & Video (Jitsi Meet & Live Class) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <!-- Storage & Media (Material Downloads & Whiteboard Exports) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
+    <!-- Push Notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name=".VirtualTuitionApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_materials"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_materials"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.VirtualTuition"
+        android:usesCleartextTraffic="true">
+
+        <!-- Razorpay Merchant API Key -->
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_TiZRxaS5TAZglh" />
+
+        <!-- Login / Entry Point -->
+        <activity
+            android:name=".auth.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Registration Activity -->
+        <activity
+            android:name=".auth.RegisterActivity"
+            android:exported="false" />
+
+        <!-- Main Dashboard Activity -->
+        <activity
+            android:name=".dashboard.MainActivity"
+            android:exported="false" />
+
+        <!-- Classroom Stream Activity -->
+        <activity
+            android:name=".classroom.ClassroomActivity"
+            android:exported="false" />
+
+        <!-- Drawpoint Virtual Whiteboard Activity -->
+        <activity
+            android:name=".whiteboard.WhiteboardActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing" />
+
+        <!-- Live Video Streaming Activity -->
+        <activity
+            android:name=".live.VideoClassActivity"
+            android:exported="false" />
+
+        <!-- Payment & Subscription Gateway Activity -->
+        <activity
+            android:name=".payment.PaymentActivity"
+            android:exported="false" />
+
+        <!-- Firebase Cloud Messaging Service -->
+        <service
+            android:name=".fcm.TuitionFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>

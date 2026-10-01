@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isTeacher() {
+      return isAuthenticated() && getUserData().role == 'teacher';
+    }
+
+    function isStudent() {
+      return isAuthenticated() && getUserData().role == 'student';
+    }
+
+    function hasActiveMaterialsAccess() {
+      return isTeacher() || (isStudent() && getUserData().allowedFeatures.materials == true);
+    }
+
+    function hasActiveWhiteboardAccess() {
+      return isTeacher() || (isStudent() && getUserData().allowedFeatures.whiteboard == true);
+    }
+
+    function hasActiveLiveVideoAccess() {
+      return isTeacher() || (isStudent() && getUserData().allowedFeatures.liveVideo == true);
+    }
+
+    // User profiles
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update: if isAuthenticated() && (request.auth.uid == userId || isTeacher());
+      allow delete: if false;
+    }
+
+    // Classrooms
+    match /classrooms/{classroomId} {
+      allow read: if isAuthenticated();
+      allow create: if isTeacher();
+      allow update, delete: if isTeacher() && resource.data.teacherId == request.auth.uid;
+
+      // Subcollection for materials stream
+      match /materials/{materialId} {
+        allow read: if isAuthenticated() && hasActiveMaterialsAccess();
+        allow create: if isAuthenticated() && hasActiveMaterialsAccess();
+        allow update, delete: if isAuthenticated() && (isTeacher() || resource.data.uploadedBy == request.auth.uid);
+      }
+
+      // Subcollection for enrolled students
+      match /students/{studentId} {
+        allow read: if isAuthenticated();
+        allow write: if isAuthenticated() && (request.auth.uid == studentId || isTeacher());
+      }
+    }
+
+    // Whiteboard exports
+    match /whiteboards/{whiteboardId} {
+      allow read: if isAuthenticated() && hasActiveWhiteboardAccess();
+      allow create: if isAuthenticated() && hasActiveWhiteboardAccess();
+      allow update, delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    // Payments collection
+    match /payments/{paymentId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isTeacher());
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if false;
+    }
+  }
+}

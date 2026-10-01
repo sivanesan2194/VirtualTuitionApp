@@ -1,0 +1,21 @@
+# Local configuration files containing API keys
+local.properties
+
+# Build directories and outputs
+*.iml
+.gradle/
+/build
+/app/build
+/captures
+
+# IDE specific files
+.idea/
+.DS_Store
+*.apk
+*.keystore
+*.jks
+
+# Android Studio local user settings
+.idea/workspace.xml
+.idea/navTree.xml
+.idea/assetWizardSettings.xml
