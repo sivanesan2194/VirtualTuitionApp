@@ -48,7 +48,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
 
     // Test Razorpay Key (standard test key placeholder)
-    private static final String RAZORPAY_KEY = "rzp_test_TiZRxaS5TAZglh";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
