@@ -1,6 +1,6 @@
 # Local configuration files containing API keys
 local.properties
-
+app/google-services.json
 # Build directories and outputs
 *.iml
 .gradle/
